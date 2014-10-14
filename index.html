@@ -40,6 +40,12 @@
     </style>
     
     <div class="sortexample">
+        <div class="sorttitle">Bubble Sort</div>
+        <div class="laps">Lap: <span id="bubblesort_lap">0</span></div>
+        <div id="bubblesort"></div>
+    </div>
+    
+    <div class="sortexample">
         <div class="sorttitle">Insertion Sort</div>
         <div class="laps">Lap: <span id="insertionsort_lap">0</span></div>
         <div id="insertionsort"></div>
@@ -66,7 +72,7 @@
     
     
      
-<script src="http://kevinsprong.com/scripts/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
     
 <script>
 
@@ -268,9 +274,16 @@ function quicksort(array) {
 //               VARS
 //*********************************************************
     
+// get function name from the function object
+function functionName(fun) {
+    var ret = fun.toString();
+    ret = ret.substr('function '.length);
+    ret = ret.substr(0, ret.indexOf('('));
+    return ret;
+}    
 // sorts to compare
-var names = ["insertionsort", "mergesort", "heapsort", "quicksort"];    
-var functions = [insertionsort, mergesort, heapsort, quicksort];    
+var functions = [insertionsort, mergesort, bubblesort, heapsort, quicksort];   
+var names = functions.map(functionName);  
 
 // sort params
 var duration = 30, n = 100,
