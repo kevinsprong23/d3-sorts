@@ -182,14 +182,16 @@
                     j++;
                 }
             }
-            actions.push({type: "permute", start: orig[0], 
-                          end: orig[orig.length - 1], perm: permute});
+            
             // need to push a dummy action for each other element 
             // of the array to make the race "fair"
             // by making a permute take O(n) actions
             for (var k = p; k < r; k++) {
                 actions.push({type: "hello"});
             }
+            actions.push({type: "permute", start: orig[0], 
+                          end: orig[orig.length - 1], perm: permute});
+            
         }
 
         function recurse(p, r) {
